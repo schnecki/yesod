@@ -46,7 +46,7 @@ class Monad (YesodDB site) => YesodPersist site where
 -- | Helper for creating 'runDB'.
 --
 -- Since 1.2.0
-defaultRunDB :: (PersistConfig c, MonadIO m)
+defaultRunDB :: (PersistConfig c, MonadIO m, MonadThrow m, MonadBaseControl IO m)
              => (site -> c)
              -> (site -> PersistConfigPool c)
              -> PersistConfigBackend c (HandlerT site m) a
